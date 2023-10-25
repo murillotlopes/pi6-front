@@ -1,9 +1,12 @@
 import { childrenProps } from "../interfaces";
+import { LoginProvider } from "./login";
 
 export const AppProvider = ({ children }: childrenProps) => {
   return (
     <>
-      {children}
+      <LoginProvider>
+        {children}
+      </LoginProvider>
     </>
   )
 }

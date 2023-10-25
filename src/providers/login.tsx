@@ -1,10 +1,11 @@
 import { createContext, useContext, useState } from "react";
-import { LoginType, childrenProps } from "../interfaces";
+import { CadastroLoginType, LoginType, childrenProps } from "../interfaces";
 import { api } from "../services/api";
 import toast from "react-hot-toast";
 
 interface LoginContextData {
-  entrarLogin: (data: LoginType) => void
+  entrarLogin: (data: LoginType) => Promise<void>
+  cadastrarLogin: (data: CadastroLoginType) => Promise<void>
   token: string | undefined
   usuario: {}
 }
@@ -42,11 +43,20 @@ const LoginProvider = ({ children }: childrenProps) => {
     })
   }
 
+  const cadastrarLogin = async (data: CadastroLoginType) => {
+    api.post('/criar', data).then(res => {
+      toast.success('Cadastro realizado com sucesso!')
+    }).catch(err => {
+      toast.error('Não foi possível seguir com seu cadastro. Tente novamente')
+    })
+  }
+
   return (
     <LoginContext.Provider value={{
       token: login.token,
       usuario: login.usuario,
-      entrarLogin
+      entrarLogin,
+      cadastrarLogin
     }}>
       {children}
     </LoginContext.Provider>
