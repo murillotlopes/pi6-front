@@ -4,19 +4,16 @@ import { useLogin } from "../../providers/login"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { schemaLogin } from "../../schemas"
-import { useNavigate } from "react-router-dom"
 
 
 export const Entrar = ({ setEntrarOuCadastrar }: setEntrarOuCadastrarProps) => {
   const [login, setLogin] = useState({ email: '', senha: '' })
   const { entrarLogin } = useLogin()
-  const navigate = useNavigate()
 
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schemaLogin) })
 
   const submeterFormEntrar = (data: LoginType) => {
-    console.log(data)
-    entrarLogin(data).then(() => navigate('/painel'))
+    entrarLogin(data)
   }
 
   return (

@@ -12,8 +12,6 @@ export const Cadastrar = ({ setEntrarOuCadastrar }: setEntrarOuCadastrarProps) =
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schemaCadastro) })
 
   const submeterFormCadastrar = (data: CadastroLoginType) => {
-    console.log('cadastro')
-    console.log(data)
     cadastrarLogin(data).then(() => setEntrarOuCadastrar(true))
   }
 
@@ -47,7 +45,7 @@ export const Cadastrar = ({ setEntrarOuCadastrar }: setEntrarOuCadastrarProps) =
             <div><small>{errors.confirmarSenha?.message}</small></div>
           </div>
           <div>
-            <button className="btn btn-primary">Entrar</button>
+            <button className="btn btn-primary">Cadastrar</button>
           </div>
           <div className="mt-3">
             <span className="btn btn-danger" onClick={() => setEntrarOuCadastrar(true)}>Já sou cadastrado!</span>
