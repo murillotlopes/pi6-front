@@ -11,3 +11,24 @@ export const schemaCadastro = yup.object().shape({
     senha: yup.string().required('Campo obrigatório'),
     confirmarSenha: yup.string().required('Obrigatório').oneOf([yup.ref('senha')], 'Senha não confere')
 })
+
+export const schemaUsuario = yup.object().shape({
+    nome: yup.string().required('Campo obrigatório'),
+    email: yup.string().required('Campo obrigatório').email('e-mail inválido')
+})
+
+export const schemaNovoInvestimento = yup.object().shape({
+    tipo_operacao: yup.string().required('Campo obrigatório'),
+    data_operacao: yup.string().required('Campo obrigatório'),
+    quantidade: yup.number().required('Campo obrigatório').transform((_, valorOriginal) => {
+        return parseFloat(valorOriginal.replace(/,/g, '.'))
+    }).test('is-positive', 'A quantidade deve ser maior que zero.', (valor) => {
+        return valor > 0
+    }),
+    valor: yup.number().required('Campo obrigatório').transform((_, valorOriginal) => {
+        return parseFloat(valorOriginal.replace(/,/g, '.'))
+    }).test('is-positive', 'O valor deve ser maior que zero.', (valor) => {
+        return valor > 0
+    }),
+    titulo: yup.string()
+})
