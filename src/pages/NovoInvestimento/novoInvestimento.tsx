@@ -7,6 +7,7 @@ import { useTitulo } from "../../providers/titulo"
 import { useOperacao } from "../../providers/operacao"
 import { schemaNovoInvestimento } from "../../schemas"
 import { PageBase } from "../../components/pageBase/pageBase"
+import { optionsTipoOperacao } from "../../util"
 
 export const NovoInvestimento = () => {
 
@@ -21,11 +22,6 @@ export const NovoInvestimento = () => {
     quantidade: 0,
     valor: 0
   } as OperacaoType)
-
-  const optionsTipoOperacao = [
-    { id: 'C', titulo: 'Compra' },
-    { id: 'V', titulo: 'Venda' }
-  ]
 
   const { control, register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schemaNovoInvestimento)

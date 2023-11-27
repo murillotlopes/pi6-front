@@ -24,7 +24,7 @@ export const Menu = () => {
               <a className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Perfil</a>
               <div className="dropdown-menu">
                 <Link className="dropdown-item" to={'/'}>Editar</Link>
-                <a className="dropdown-item" onClick={sair}>Sair</a>
+                <a className="dropdown-item" onClick={() => sair()}>Sair</a>
               </div>
             </li>
             <li className="nav-item" role="button">

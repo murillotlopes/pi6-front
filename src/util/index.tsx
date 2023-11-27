@@ -6,3 +6,8 @@ export const dataAtual = () => {
   const dia = dataAtual.getDate().toString().padStart(2, '0');
   return `${ano}-${mes}-${dia}`;
 }
+
+export const optionsTipoOperacao = [
+  { id: 'C', titulo: 'Compra' },
+  { id: 'V', titulo: 'Venda' }
+]

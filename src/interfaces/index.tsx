@@ -27,6 +27,7 @@ export interface OperacaoType {
     quantidade: number,
     valor: number,
 
+    id?: number,
     mercado?: string,
     trade?: string,
     corretagem?: string,
@@ -49,6 +50,11 @@ export interface CardInvestimentoProps {
     idKey: number
 }
 
+export interface ListaOperacoesProps {
+    operacaoSalvo: OperacaoType,
+    setExcluindoOperacao: React.Dispatch<React.SetStateAction<number>>
+}
+
 export interface TituloType {
     id: number,
     ticket: string,
@@ -64,6 +70,7 @@ export interface TituloType {
 }
 
 export interface MeusInvestimentosType {
+    id: number,
     ticket: string,
     nome_empresa: string,
     valor: number,

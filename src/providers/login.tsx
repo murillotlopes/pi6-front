@@ -3,14 +3,20 @@ import { CadastroLoginType, LoginType, UsuarioType, childrenProps } from "../int
 import { api } from "../services/api";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { AxiosHeaders, Method, RawAxiosRequestHeaders } from "axios";
 
 interface LoginContextData {
   entrarLogin: (data: LoginType) => Promise<void>
+  autenticadorToken: () => (RawAxiosRequestHeaders & MethodsHeaders) | AxiosHeaders
   cadastrarLogin: (data: CadastroLoginType) => Promise<void>
   sair: () => void
   token: string | undefined
   usuario: UsuarioType
 }
+
+type MethodsHeaders = Partial<{
+  [Key in Method as Lowercase<Key>]: AxiosHeaders;
+} & { common: AxiosHeaders }>;
 
 const LoginContext = createContext<LoginContextData>({} as LoginContextData)
 
@@ -29,8 +35,17 @@ const LoginProvider = ({ children }: childrenProps) => {
     return {}
   })
 
+  const autenticadorToken = () => {
+    let headers: (RawAxiosRequestHeaders & MethodsHeaders) | AxiosHeaders = { Authorization: '' }
+    const { token } = login
+
+    headers.Authorization = `JWT ${token}`
+
+    return headers
+  }
+
   const entrarLogin = async (data: LoginType) => {
-    api.post('/usuario/login', data).then(res => {
+    api.post('/usuario/login', data,).then(res => {
       const { token, usuario } = res.data
 
       sessionStorage.setItem('@GMNTV:token', JSON.stringify(token))
@@ -55,7 +70,7 @@ const LoginProvider = ({ children }: childrenProps) => {
   }
 
   const sair = () => {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     sessionStorage.clear()
     navigate('/')
   }
@@ -65,6 +80,7 @@ const LoginProvider = ({ children }: childrenProps) => {
       token: login.token,
       usuario: login.usuario,
       entrarLogin,
+      autenticadorToken,
       cadastrarLogin,
       sair
     }}>

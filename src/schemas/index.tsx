@@ -20,13 +20,13 @@ export const schemaUsuario = yup.object().shape({
 export const schemaNovoInvestimento = yup.object().shape({
     tipo_operacao: yup.string().required('Campo obrigatório'),
     data_operacao: yup.string().required('Campo obrigatório'),
-    quantidade: yup.number().required('Campo obrigatório').transform((_, valorOriginal) => {
-        return parseFloat(valorOriginal.replace(/,/g, '.'))
+    quantidade: yup.number().required('Campo obrigatório').transform((_, valorOriginal: string) => {
+        return parseFloat(String(valorOriginal).replace(/[,.](?=\d|$)/g, '.'))
     }).test('is-positive', 'A quantidade deve ser maior que zero.', (valor) => {
         return valor > 0
     }),
-    valor: yup.number().required('Campo obrigatório').transform((_, valorOriginal) => {
-        return parseFloat(valorOriginal.replace(/,/g, '.'))
+    valor: yup.number().required('Campo obrigatório').transform((_, valorOriginal: string) => {
+        return parseFloat(valorOriginal.replace(/[,.](?=\d|$)/g, '.'))
     }).test('is-positive', 'O valor deve ser maior que zero.', (valor) => {
         return valor > 0
     }),
