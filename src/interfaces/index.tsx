@@ -73,9 +73,11 @@ export interface MeusInvestimentosType {
     id: number,
     ticket: string,
     nome_empresa: string,
-    valor: number,
+    total: number,
     quantidade: number,
     custo_medio: number,
-    recomendacao: string
+    recomendacao: string,
+    lucro: number,
+    tipo: string
 }
 

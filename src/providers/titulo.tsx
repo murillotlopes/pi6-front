@@ -8,6 +8,7 @@ interface TituloContextData {
   buscarTitulo: (data: string) => Promise<TituloType>
   meusTitulos: () => Promise<Array<MeusInvestimentosType>>
   listarOperacoesTitulo: (tituloId: number) => Promise<TituloType>
+  graficoDashBord: () => Promise<[] | void>
 }
 
 const TituloContext = createContext<TituloContextData>({} as TituloContextData)
@@ -48,11 +49,23 @@ const TituloProvider = ({ children }: childrenProps) => {
     }
   }
 
+  const graficoDashBord = async () => {
+    try {
+      const res = await api.get(`/titulo/meus-titulos-grafico`, { headers: autenticadorToken() })
+      return res.data
+    } catch (error) {
+      console.error(error)
+      toast.error('Algo deu erro.\nTente novamente!')
+      return []
+    }
+  }
+
   return (
     <TituloContext.Provider value={{
       buscarTitulo,
       meusTitulos,
-      listarOperacoesTitulo
+      listarOperacoesTitulo,
+      graficoDashBord
     }}>
       {children}
     </TituloContext.Provider>

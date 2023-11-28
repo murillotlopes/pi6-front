@@ -16,10 +16,11 @@ export const CardInvestimento = ({ ativo, idKey }: CardInvestimentoProps) => {
           </div>
           <div id={`${ativo.ticket}${idKey}`} className="collapse" aria-labelledby={ativo.ticket} data-parent={`#A${idKey}`}>
             <div className="card-body">
-              <div>Valor: {ativo.valor}</div>
+              <div>Total: {ativo.total}</div>
               <div>Quantidade: {ativo.quantidade}</div>
               <div>Ticket Médio: {ativo.custo_medio}</div>
               <div>Recomendação: {ativo.recomendacao}</div>
+              <div>Lucro realizado: {ativo.lucro}</div>
             </div>
           </div>
         </div>

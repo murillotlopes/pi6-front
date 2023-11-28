@@ -39,7 +39,7 @@ const LoginProvider = ({ children }: childrenProps) => {
     let headers: (RawAxiosRequestHeaders & MethodsHeaders) | AxiosHeaders = { Authorization: '' }
     const { token } = login
 
-    headers.Authorization = `JWT ${token}`
+    headers.Authorization = token
 
     return headers
   }
@@ -48,10 +48,10 @@ const LoginProvider = ({ children }: childrenProps) => {
     api.post('/usuario/login', data,).then(res => {
       const { token, usuario } = res.data
 
-      sessionStorage.setItem('@GMNTV:token', JSON.stringify(token))
+      sessionStorage.setItem('@GMNTV:token', JSON.stringify('JWT ' + token))
       sessionStorage.setItem('@GMNTV:usuario', JSON.stringify(usuario))
 
-      setLogin({ token, usuario })
+      setLogin({ token: 'JWT ' + token, usuario })
 
       toast.success('Seja bem vindo!')
       navigate('/painel')
