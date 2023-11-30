@@ -45,9 +45,8 @@ export interface setEntrarOuCadastrarProps {
     setEntrarOuCadastrar: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export interface CardInvestimentoProps {
-    ativo: MeusInvestimentosType,
-    idKey: number
+export interface BotaoProps {
+    setEntrarOuCadastrar: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface ListaOperacoesProps {

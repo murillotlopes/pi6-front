@@ -18,7 +18,7 @@ export const Entrar = ({ setEntrarOuCadastrar }: setEntrarOuCadastrarProps) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(submeterFormEntrar)} className="text-center p-3">
+      <form onSubmit={handleSubmit(submeterFormEntrar)} className="text-center p-3 border border-secondary rounded" >
         <fieldset>
           <legend>Login</legend>
           <div className="mb-3">
