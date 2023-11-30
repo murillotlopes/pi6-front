@@ -35,9 +35,11 @@ export const ListaOperacao = () => {
   return (
     <>
       <PageBase>
-        <ul>
-          {operacoes?.map(operacao => <CardOperacao key={operacao.id} operacaoSalvo={operacao} setExcluindoOperacao={setExcluindoOperacao} />)}
-        </ul>
+        <div className="mt-5">
+          <ul>
+            {operacoes?.map(operacao => <CardOperacao key={operacao.id} operacaoSalvo={operacao} setExcluindoOperacao={setExcluindoOperacao} />)}
+          </ul>
+        </div>
       </PageBase>
     </>
   )

@@ -11,3 +11,14 @@ export const optionsTipoOperacao = [
   { id: 'C', titulo: 'Compra' },
   { id: 'V', titulo: 'Venda' }
 ]
+
+export const valorBR = (number: number) => {
+  return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+}
+
+export const abreviarTexto = (texto: string, limite: number) => {
+  if (texto.length <= limite) return texto
+  else return texto.substring(0, limite - 3) + '...'
+
+}
+

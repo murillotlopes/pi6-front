@@ -21,9 +21,13 @@ export const ListaInvestimento = () => {
   return (
     <>
       <PageBase>
-        {
-          investimentos.map((inv, id) => (<CardInvestimento key={id} ativo={inv} idKey={id} />))
-        }
+        <div className="mt-5 p-3 col-10">
+          <div className="row">
+            {
+              investimentos.map((inv, id) => (<CardInvestimento key={id} ativo={inv} idKey={id} />))
+            }
+          </div>
+        </div>
       </PageBase>
     </>
   )

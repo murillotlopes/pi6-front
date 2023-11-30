@@ -39,17 +39,15 @@ export const CardOperacao = ({ operacaoSalvo, setExcluindoOperacao }: ListaOpera
 
   return (
     <>
-      <form onSubmit={handleSubmit(submiteForm)}>
+      <form onSubmit={handleSubmit(submiteForm)} className="p-3 border border-secondary rounded mb-3 ">
         <div className="card" >
-          <div className="card-header">
+          <div className="card-header d-flex justify-content-around">
             Operacao: {operacaoTexto(operacaoSalvo.tipo_operacao)}
 
             {!modoEdicao ?
-              <span><FaPenToSquare onClick={() => setModoEdicao(!modoEdicao)} /> <FaTrash onClick={excluir} /></span>
-              : <button><FaFloppyDisk /></button>
+              <span ><FaPenToSquare onClick={() => setModoEdicao(!modoEdicao)} /> <FaTrash onClick={excluir} /></span>
+              : <button ><FaFloppyDisk /></button>
             }
-
-
           </div>
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
